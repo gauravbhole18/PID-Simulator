@@ -1,12 +1,10 @@
-from plant import TemperaturePlant
 from simulator import Simulator
-import matplotlib.pyplot as plt
 from plotter import Plotter
-from pid import PIDController
 
-kp = 2.0
-ki = 0
-kd = 0
+
+kp = 5.0
+ki = 0.8
+kd = 0.1
 simulator = Simulator(kp=kp, ki=ki, kd=kd)
 
 results= simulator.run()

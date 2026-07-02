@@ -6,7 +6,7 @@ class TemperaturePlant:
 
         self.heating_constant = 0.8
 
-        self.cooling_constant = 0.3
+        self.cooling_constant = 0.6
 
     def update(self, heater_power, dt):
         heating = heater_power * self.heating_constant 
