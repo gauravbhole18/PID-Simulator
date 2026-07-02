@@ -8,7 +8,7 @@ class Plotter:
         p_values = results["p_values"]
         i_values = results["i_values"]  
         d_values = results["d_values"]
-        setpoint = results["setpoint"]
+        setpoints = results["setpoint"]
         errors = results["errors"]
       
       
@@ -17,9 +17,16 @@ class Plotter:
 
         plt.plot(times, temperatures, label="Temperature")
 
-        plt.axhline(
-            setpoint,
-            linestyle="--",
+        # plt.axhline(
+        #     setpoint,
+        #     linestyle="--",
+        #     label="Setpoint"
+        # )
+
+        plt.plot(
+            times,
+            setpoints,
+            "--",
             label="Setpoint"
         )
 
