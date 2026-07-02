@@ -4,6 +4,10 @@ from config import ( KP,
                      KI,
                      KD,
                      )
+from app import PIDSimulatorApp
+
+# app = PIDSimulatorApp()
+# app.run()
 
 
 simulator = Simulator(kp=KP, ki=KI, kd=KD)
