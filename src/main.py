@@ -1,23 +1,28 @@
 from plant import TemperaturePlant
 from simulator import Simulator
 import matplotlib.pyplot as plt
+from plotter import Plotter
+from pid import PIDController
 
-from pid import PController
+kp = 2.0
+ki = 0
+kd = 0
+simulator = Simulator(kp=kp, ki=ki, kd=kd)
+
+results= simulator.run()
+plotter = Plotter()
+plotter.plot(results)
 
 
-simulator = Simulator()
+# plt.plot(times, temperatures, label="Temperature (°C)")
+# plt.plot(times, heater_powers, label="Heater Power (%)")
 
-times, temperatures, heater_powers = simulator.run()
-
-plt.plot(times, temperatures, label="Temperature (°C)")
-plt.plot(times, heater_powers, label="Heater Power (%)")
-
-plt.title("Temperature Vs Time Simulation")
-plt.xlabel("Time (s)")  
-plt.ylabel("Temperature (°C)")
-plt.grid()
-plt.legend()
-plt.show()
+# plt.title("Temperature Vs Time Simulation")
+# plt.xlabel("Time (s)")  
+# plt.ylabel("Temperature (°C)")
+# plt.grid()
+# plt.legend()
+# plt.show()
 
 # plant = TemperaturePlant()
 
