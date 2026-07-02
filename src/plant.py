@@ -1,12 +1,20 @@
+from config import ( ROOM_TEMPERATURE, 
+                    HEATING_CONSTANT, 
+                    COOLING_CONSTANT, 
+                    INITIAL_TEMPERATURE,
+                    )
+
 class TemperaturePlant:
     def __init__(self):
-        self.room_temperature = 0
+        self.room_temperature = ROOM_TEMPERATURE
+        self.heating_constant = HEATING_CONSTANT
+        self.cooling_constant = COOLING_CONSTANT
 
-        self.temperature = 20.0  # Initial temperature of the plant
+        self.temperature = INITIAL_TEMPERATURE  # Initial temperature of the plant
 
-        self.heating_constant = 0.8
+       
 
-        self.cooling_constant = 0.6
+      
 
     def update(self, heater_power, dt):
         heating = heater_power * self.heating_constant 

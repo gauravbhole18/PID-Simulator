@@ -1,3 +1,5 @@
+from config import MAX_HEATER_POWER, MIN_HEATER_POWER
+
 class PIDController:
     def __init__(self, kp, ki, kd):
         self.kp = kp
@@ -18,6 +20,6 @@ class PIDController:
             error - self.prev_error )/ dt)
         self.prev_error = error
         output_signal = p + i + d
-        output_signal = max(0, min(100, output_signal))  # Clamp output to [0, 100]
+        output_signal = max(MIN_HEATER_POWER, min(MAX_HEATER_POWER, output_signal))  # Clamp output to [0, 100]
 
         return output_signal, p, i, d

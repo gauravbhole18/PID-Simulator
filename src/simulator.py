@@ -1,5 +1,11 @@
 from plant import TemperaturePlant
 from pid import PIDController
+from config import ( KP,
+                     KI,
+                    KD,
+                    SIMULATION_TIME,
+                    DT
+                    )
 
 
 
@@ -9,8 +15,8 @@ class Simulator:
         self.controller = PIDController(kp=kp, ki=ki, kd=kd)  # PID gains
         self.setpoint = 100.0  # Desired temperature
         self.plant = TemperaturePlant()
-        self.dt = 0.1  # Time step for simulation
-        self.simulation_time = 10  # Total simulation time
+        self.dt = DT  # Time step for simulation
+        self.simulation_time = SIMULATION_TIME  # Total simulation time
         # self.heater_power = 100  # Power of the heater
         
 
