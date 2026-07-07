@@ -30,10 +30,10 @@ The simulator models a first-order temperature control system and allows users t
 
 ### PID Controller GUI
 
-> *(Add a screenshot here)*
+
 
 ```
-docs/images/gui.png
+docs/Simulation_screenshot.png
 ```
 
 ---
