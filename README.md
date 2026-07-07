@@ -31,7 +31,7 @@ The simulator models a first-order temperature control system and allows users t
 ### PID Controller GUI
 
 
-![GUI](docs/Simulation_screenshot.png)
+![GUI](docs/Simulation_Screenshot.png)
 
 
 ---
