@@ -15,14 +15,14 @@ ROOM_TEMPERATURE = 20.0      # °C
 INITIAL_TEMPERATURE = 20.0   # °C
 
 HEATING_CONSTANT = 0.8
-COOLING_CONSTANT = 0.03
+COOLING_CONSTANT = 0.5
 
 # ==========================
 # Controller
 # ==========================
 
-KP = 2.0
-KI = 0.5
+KP = 5.0
+KI = 1
 KD = 0.1
 
 # ==========================

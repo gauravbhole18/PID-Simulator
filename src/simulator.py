@@ -13,14 +13,18 @@ from config import ( KP,
 
 
 class Simulator:
-    def __init__(self, kp, ki, kd):
+    def __init__(self, kp, ki, kd, setpoint):
         self.controller = PIDController(kp=kp, ki=ki, kd=kd)  # PID gains
-        self.setpoint = INITIAL_SETPOINT  # Desired temperature
+        self.setpoint = setpoint  # Desired temperature
         self.plant = TemperaturePlant()
         self.dt = DT  # Time step for simulation
         self.simulation_time = SIMULATION_TIME  # Total simulation time
         # self.heater_power = 100  # Power of the heater
         
+   
+
+
+
 
     def run(self):
         times = [0.0]
@@ -53,11 +57,11 @@ class Simulator:
            "i_values": i_values,
            "d_values": d_values,
            "errors": errors,
-           "setpoint": setpoints
+           "setpoints": setpoints
         }
 
     def get_setpoint(self, current_time):
         if current_time < 5.0:
             return INITIAL_SETPOINT
         else: 
-            return FINAL_SETPOINT
+            return self.setpoint

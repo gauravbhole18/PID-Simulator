@@ -1,5 +1,7 @@
 import customtkinter as ctk
-
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from plotter import Plotter
+from simulator import Simulator
 
 class PIDSimulatorApp:
 
@@ -53,6 +55,27 @@ class PIDSimulatorApp:
             20,
             2.0
         )
+
+        self.setpoint_slider , self.setpoint_value = self.create_slider(
+            self.control_frame,
+            "Setpoint",
+            0,
+            100,
+            50.0
+        )
+
+        self.run_button = ctk.CTkButton(
+            self.control_frame,
+            text="Run Simulation",
+            command=self.run_simulation
+        )
+
+        self.run_button.pack(
+            fill="x",
+            padx=10,
+            pady=20
+        )
+
         # self.kp_label = ctk.CTkLabel(
         #     self.control_frame,
         #     text = "kp"
@@ -67,7 +90,41 @@ class PIDSimulatorApp:
         # self.kp_slider.set(2.0)
         # self.kp_slider.pack(fill = "x", padx = 10)
 
+    def run_simulation(self):
 
+        kp = self.kp_slider.get()
+        ki = self.ki_slider.get()
+        kd = self.kd_slider.get()
+        setpoint = self.setpoint_slider.get()
+
+        simulator = Simulator(
+            kp=kp,
+            ki=ki,
+            kd=kd,
+            setpoint=setpoint
+        )
+
+        results = simulator.run()
+
+        plotter = Plotter()
+
+        figure = plotter.plot(results)
+
+        # Remove previous graph
+        for widget in self.graph_frame.winfo_children():
+            widget.destroy()
+
+        canvas = FigureCanvasTkAgg(
+            figure,
+            master=self.graph_frame
+        )
+
+        canvas.draw()
+
+        canvas.get_tk_widget().pack(
+            fill="both",
+            expand=True
+        )
 
     def create_slider(self,
                       parent,
@@ -105,5 +162,9 @@ class PIDSimulatorApp:
             slider.pack(fill = "x", pady = 5)
             return slider, value_label
 
+    
+    
+    
+    
     def run(self):
         self.root.mainloop()
