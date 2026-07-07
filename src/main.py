@@ -6,12 +6,12 @@ from config import ( KP,
                      )
 from app import PIDSimulatorApp
 
-# app = PIDSimulatorApp()
-# app.run()
+app = PIDSimulatorApp()
+app.run()
 
 
-simulator = Simulator(kp=KP, ki=KI, kd=KD)
+# simulator = Simulator(kp=KP, ki=KI, kd=KD)
 
-results= simulator.run()
-plotter = Plotter()
-plotter.plot(results)
+# results= simulator.run()
+# plotter = Plotter()
+# plotter.plot(results)

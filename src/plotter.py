@@ -1,79 +1,72 @@
 import matplotlib.pyplot as plt
 
+
 class Plotter:
-    def plot(self,results):
+
+    def plot(self, results):
+
         times = results["times"]
         temperatures = results["temperatures"]
         heater_powers = results["heater_powers"]
         p_values = results["p_values"]
-        i_values = results["i_values"]  
+        i_values = results["i_values"]
         d_values = results["d_values"]
-        setpoints = results["setpoint"]
+        setpoints = results["setpoints"]
         errors = results["errors"]
-      
-      
-        plt.figure(figsize=(12, 10))
-        plt.subplot(4, 1, 1)
 
-        plt.plot(times, temperatures, label="Temperature")
+        # Create Figure
+        fig = plt.Figure(figsize=(12, 10))
 
-        # plt.axhline(
-        #     setpoint,
-        #     linestyle="--",
-        #     label="Setpoint"
-        # )
+        # -----------------------------
+        # Temperature Plot
+        # -----------------------------
+        ax1 = fig.add_subplot(4, 1, 1)
 
-        plt.plot(
-            times,
-            setpoints,
-            "--",
-            label="Setpoint"
-        )
+        ax1.plot(times, temperatures, label="Temperature")
+        ax1.plot(times, setpoints, "--", label="Setpoint")
 
-        plt.title("Temperature Response")
+        ax1.set_title("Temperature Response")
+        ax1.set_ylabel("Temperature (°C)")
+        ax1.grid(True)
+        ax1.legend()
 
-        plt.ylabel("Temperature (°C)")
+        # -----------------------------
+        # Heater Output
+        # -----------------------------
+        ax2 = fig.add_subplot(4, 1, 2)
 
-        plt.grid(True)
+        ax2.plot(times, heater_powers)
 
-        plt.legend()
-        plt.subplot(4, 1, 2)
+        ax2.set_title("Controller Output")
+        ax2.set_ylabel("Heater (%)")
+        ax2.grid(True)
 
-        plt.plot(times, heater_powers)
+        # -----------------------------
+        # Error
+        # -----------------------------
+        ax3 = fig.add_subplot(4, 1, 3)
 
-        plt.title("Controller Output")
+        ax3.plot(times, errors)
 
-        plt.ylabel("Heater (%)")
+        ax3.set_title("Error")
+        ax3.set_ylabel("°C")
+        ax3.grid(True)
 
-        plt.grid(True)
-        plt.subplot(4, 1, 3)
+        # -----------------------------
+        # PID Contributions
+        # -----------------------------
+        ax4 = fig.add_subplot(4, 1, 4)
 
-        plt.plot(times, errors)
+        ax4.plot(times, p_values, label="P")
+        ax4.plot(times, i_values, label="I")
+        ax4.plot(times, d_values, label="D")
 
-        plt.title("Error")
+        ax4.set_title("PID Contributions")
+        ax4.set_xlabel("Time (s)")
+        ax4.set_ylabel("Output")
+        ax4.grid(True)
+        ax4.legend()
 
-        plt.ylabel("°C")
+        fig.tight_layout()
 
-        plt.grid(True)
-
-        plt.subplot(4, 1, 4)
-
-        plt.plot(times, p_values, label="P")
-
-        plt.plot(times, i_values, label="I")
-
-        plt.plot(times, d_values, label="D")
-
-        plt.title("PID Contributions")
-
-        plt.xlabel("Time (s)")
-
-        plt.ylabel("Output")
-
-        plt.grid(True)
-
-        plt.legend()
-
-        plt.tight_layout()
-
-        plt.show()
+        return fig
